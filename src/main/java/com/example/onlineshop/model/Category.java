@@ -6,4 +6,7 @@ public record Category(Long id, Long parentId, String name) {
         return "id  " + id + "Parentid" + parentId + "Name" + name;
     }
 
+
+
+
 }
