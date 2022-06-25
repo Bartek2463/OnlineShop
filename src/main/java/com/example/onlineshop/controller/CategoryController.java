@@ -1,16 +1,13 @@
 package com.example.onlineshop.controller;
 
 import com.example.onlineshop.model.Category;
-import com.example.onlineshop.model.Product;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
-import java.util.stream.Collectors;
-@Controller
+
 @RestController
 @RequestMapping("/category")
 public class CategoryController {

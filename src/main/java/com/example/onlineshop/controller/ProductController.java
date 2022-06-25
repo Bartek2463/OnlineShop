@@ -4,16 +4,13 @@ package com.example.onlineshop.controller;
 import com.example.onlineshop.model.Product;
 import com.example.onlineshop.model.ProductDTO;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
-@Controller
 @RestController
 @RequestMapping("/product")
 @Slf4j
@@ -43,7 +40,7 @@ public class ProductController {
     };
 
 
-    @GetMapping("")
+    @GetMapping
     public List<Product> getProducts() {
         return products;
     }
@@ -62,7 +59,7 @@ public class ProductController {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping()
+    @PostMapping
     public Long addProduct(@RequestBody ProductDTO dto) {
         System.out.println(dto);
         Product newProduct = dto.toProduct(nextIdx());
