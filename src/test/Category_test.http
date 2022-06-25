@@ -1,8 +1,22 @@
-###
-GET http://localhost:8080/category
 
-###
-GET http://localhost:8080/category/all
+//Lista wszystkich kategorii
+GET http://localhost:8081/category/all
 
+
+// Id konkretnej kategorii
 ###
-GET http://localhost:8080/product
+GET http://localhost:8081/category/1
+
+
+//dodawanie kategorii
+###
+POST http://localhost:8081/category/add
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": null,
+  "parentId": 1.0,
+  "name": "Smartfony"
+}
+
