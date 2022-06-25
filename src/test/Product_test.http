@@ -1,0 +1,48 @@
+
+### lista wszystkich produktów
+GET http://localhost:8081/product/all
+
+### dodawnie produktu do listy
+POST http://localhost:8081/product/add
+Accept: application/json
+Content-Type: application/json
+
+{
+  "id": null,
+  "title": "Pralka",
+  "description": "To jest dobra Pralka wspaniale Pierze",
+  "price": 2000.0,
+  "category": 1.0
+}
+
+### pobieranie do edycji konkretnego id produktu
+GET http://localhost:8081/product/editId/3
+
+### edycja konktrentego id produktu
+POST http://localhost:8081/product/editId/5
+Accept: application/json
+Content-Type: application/json
+
+{
+  "title": "Pralka",
+  "description": "To jest dobra Pralka wspaniale Pierze",
+  "price": 2000.0,
+  "category": 1.0
+}
+###
+POST http://localhost:8081/product/deleteId/2
+Accept: application/json
+Content-Type: application/json
+
+
+###  lista wszystkich produktów o danej kategorii
+GET http://localhost:8081/product/category/3
+
+
+
+
+
+
+
+
+

@@ -2,14 +2,16 @@ package com.example.onlineshop.controller;
 
 
 import com.example.onlineshop.model.Product;
-import com.example.onlineshop.model.ProductDTO;
+import com.example.onlineshop.dto.ProductDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
@@ -19,7 +21,7 @@ import java.util.stream.Collectors;
 @Slf4j
 public class ProductController {
 
-    private AtomicLong index = new AtomicLong(0);
+    private AtomicInteger index = new AtomicInteger(0);
 
     private List<Product> products = new LinkedList<>() {
         {
@@ -43,14 +45,38 @@ public class ProductController {
     };
 
 
-    @GetMapping("")
+    @GetMapping("/all")
     public List<Product> getProducts() {
         return products;
     }
 
-    @GetMapping("/{id}")
-    public Product getProduct(@PathVariable Long id) {
+    @PostMapping("/add")
+    public Integer addProduct(@RequestBody ProductDTO dto) {
+        System.out.println(dto);
+        Product newProduct = dto.toProduct(nextIdx());
+        products.add(newProduct);
+
+        return newProduct.id();
+    }
+
+    @GetMapping("/editId/{id}")
+    public Product getEditProduct(@PathVariable Integer id) {
         return getProducts().get(id.intValue() - 1);
+    }
+
+
+    @PostMapping("/editId/{id}")
+    public Product postEditProduct(@PathVariable Integer id, @RequestBody ProductDTO dto) {
+        System.out.println(dto);
+        Product product = dto.toProduct(id);
+        products.set(id - 1, product);
+        return product;
+    }
+
+    @PostMapping("/deleteId/{id}")
+    public Integer deleteEditProduct(@PathVariable Integer id) {
+        products.remove(id - 1);
+        return id;
     }
 
     @GetMapping("/category/{categoryId}")
@@ -62,16 +88,8 @@ public class ProductController {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping()
-    public Long addProduct(@RequestBody ProductDTO dto) {
-        System.out.println(dto);
-        Product newProduct = dto.toProduct(nextIdx());
-        products.add(newProduct);
 
-        return newProduct.id();
-    }
-
-    private long nextIdx() {
+    private Integer nextIdx() {
         return index.incrementAndGet();
     }
 
