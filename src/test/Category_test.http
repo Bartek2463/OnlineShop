@@ -1,1 +1,8 @@
-GET http://localhost:8080/categor
+###
+GET http://localhost:8080/category
+
+###
+GET http://localhost:8080/category/all
+
+###
+GET http://localhost:8080/product
