@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/test")
+@Deprecated(since = "2022-06-26, only for check if all stuff works")
 public class TestController {
 
     @GetMapping

@@ -6,11 +6,9 @@ import lombok.Value;
 
 @Value
 public class CategoryDTO {
-
-
-    private Long id;
-    private Long parentId;
-    private String name;
+    Long id;
+    Long parentId;
+    String name;
 
     public Category toCategory(long id){
         return  new Category(id,parentId,name);

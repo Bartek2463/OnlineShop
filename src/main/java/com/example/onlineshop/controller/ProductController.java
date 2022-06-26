@@ -20,9 +20,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/product")
 @Slf4j
 public class ProductController {
-
     private AtomicInteger index = new AtomicInteger(0);
-
     private List<Product> products = new LinkedList<>() {
         {
             add(new Product(nextIdx(), "Lodówka", "To jest dobra Lodówka wspaniale chłodzi", 2500.0, 1L));
@@ -44,13 +42,12 @@ public class ProductController {
         }
     };
 
-
-    @GetMapping("/all")
+    @GetMapping
     public List<Product> getProducts() {
         return products;
     }
 
-    @PostMapping("/add")
+    @PostMapping
     public Integer addProduct(@RequestBody ProductDTO dto) {
         System.out.println(dto);
         Product newProduct = dto.toProduct(nextIdx());
@@ -59,13 +56,13 @@ public class ProductController {
         return newProduct.id();
     }
 
-    @GetMapping("/editId/{id}")
+    @GetMapping("/{id}")
     public Product getEditProduct(@PathVariable Integer id) {
         return getProducts().get(id.intValue() - 1);
     }
 
 
-    @PostMapping("/editId/{id}")
+    @PutMapping("/{id}")
     public Product postEditProduct(@PathVariable Integer id, @RequestBody ProductDTO dto) {
         System.out.println(dto);
         Product product = dto.toProduct(id);
@@ -73,7 +70,7 @@ public class ProductController {
         return product;
     }
 
-    @PostMapping("/deleteId/{id}")
+    @DeleteMapping("/{id}")
     public Integer deleteEditProduct(@PathVariable Integer id) {
         products.remove(id - 1);
         return id;
@@ -88,9 +85,7 @@ public class ProductController {
                 .collect(Collectors.toList());
     }
 
-
     private Integer nextIdx() {
         return index.incrementAndGet();
     }
-
 }
