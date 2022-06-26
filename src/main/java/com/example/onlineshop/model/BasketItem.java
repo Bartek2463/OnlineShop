@@ -1,4 +1,9 @@
 package com.example.onlineshop.model;
 
-public class BasketItem {
+import lombok.Data;
+
+
+public record BasketItem(long id, long productId, long quantity, double price, double value) {
+
+
 }
