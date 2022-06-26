@@ -1,38 +1,37 @@
 package com.example.onlineshop.controller;
 
 import com.example.onlineshop.model.OrderItem;
-import com.example.onlineshop.model.OrderItemDTO;
-import com.example.onlineshop.model.Product;
-import com.example.onlineshop.model.ProductDTO;
+import com.example.onlineshop.dto.OrderItemDTO;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
-@Controller
 @RestController
 @RequestMapping("/order")
 public class OrderItemController {
+    public AtomicLong index = new AtomicLong();
 
-
-    public  AtomicLong index = new AtomicLong();
-    private long nextId(){
+    private long nextId() {
         return index.incrementAndGet();
     }
 
-    private List<OrderItem> orderItems = new LinkedList<>(){
+    private List<OrderItem> orderItems = new LinkedList<>() {
         {
             add(new OrderItem(nextId(), 1l, 3, 2500.0, 400));
             add(new OrderItem(nextId(), 2l, 5, 4500.0, 700));
         }
     };
 
-
-
-    @GetMapping("")
+    @GetMapping
     public List<OrderItem> getOrderItems() {
         return orderItems;
     }
@@ -42,8 +41,6 @@ public class OrderItemController {
         return getOrderItems().get(id.intValue() - 1);
 
     }
-
-
 
     @GetMapping("/product/{productId}")
     public List<OrderItem> orderItems(@PathVariable Long productId) {
@@ -58,12 +55,6 @@ public class OrderItemController {
         System.out.println(dto);
         OrderItem newOrderItem = dto.toOrderItem(nextId());
         orderItems.add(newOrderItem);
-        return  newOrderItem.id();
-
-
+        return newOrderItem.id();
     }
-
-
-
-
-    }
+}

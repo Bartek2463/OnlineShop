@@ -1,15 +1,16 @@
-package com.example.onlineshop.model;
+package com.example.onlineshop.dto;
 
+import com.example.onlineshop.model.OrderItem;
 import lombok.Value;
 
 @Value
 public class OrderItemDTO {
 
-    private Long id;
-    private Long productId;
-    private int amount;
-    private double price;
-    private double value;
+    Long id;
+    Long productId;
+    int amount;
+    double price;
+    double value;
 
     public OrderItem toOrderItem(long id){
         return new OrderItem(id, productId, amount, price, value);

@@ -12,13 +12,11 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 
-@Controller
 @RestController
 @RequestMapping("/category")
 public class CategoryController {
 
     private AtomicLong index = new AtomicLong(0);
-
 
     private List<Category> categories = new LinkedList<>() {
         {
@@ -29,7 +27,7 @@ public class CategoryController {
         }
     };
 
-    @GetMapping(path = {"/all"})
+    @GetMapping
     public List<Category> getCategories() {
         return categories;
     }
@@ -39,8 +37,7 @@ public class CategoryController {
         return getCategories().get(id.intValue() - 1);
     }
 
-
-    @PostMapping("/add")
+    @PostMapping
     public Long addCategory(@RequestBody CategoryDTO dto) {
         System.out.println(dto);
         Category newCategory = dto.toCategory(nextIdx());
@@ -48,12 +45,8 @@ public class CategoryController {
         return newCategory.id();
     }
 
-
-
     private long nextIdx() {
         return index.incrementAndGet();
     }
-
-
 }
 
