@@ -3,6 +3,8 @@ package com.example.onlineshop.controller;
 import com.example.onlineshop.dto.CategoryDTO;
 import com.example.onlineshop.model.Category;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +22,7 @@ public class CategoryController {
 
     private List<Category> categories = new LinkedList<>() {
         {
-            add(new Category(nextIdx(), null, "AGD"));
+            add(new Category(nextIdx(), 1L, "AGD"));
             add(new Category(nextIdx(), 1L, "Komputery"));
             add(new Category(nextIdx(), 1l, "Smartfony"));
             add(new Category(nextIdx(), 1l, "TV i Audio"));
@@ -38,11 +40,12 @@ public class CategoryController {
     }
 
     @PostMapping
-    public Long addCategory(@RequestBody CategoryDTO dto) {
+    public ResponseEntity addCategory(@RequestBody CategoryDTO dto) {
         System.out.println(dto);
         Category newCategory = dto.toCategory(nextIdx());
         categories.add(newCategory);
-        return newCategory.id();
+
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     private long nextIdx() {

@@ -1,6 +1,6 @@
 
 //Lista wszystkich kategorii
-GET http://localhost:8080/category/all
+GET http://localhost:8080/category
 
 
 // Id konkretnej kategorii
@@ -10,7 +10,7 @@ GET http://localhost:8080/category/1
 
 //dodawanie kategorii
 ###
-POST http://localhost:8080/category/add
+POST http://localhost:8080/category
 Accept: application/json
 Content-Type: application/json
 
