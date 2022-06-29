@@ -4,6 +4,8 @@ package com.example.onlineshop.controller;
 import com.example.onlineshop.model.Product;
 import com.example.onlineshop.dto.ProductDTO;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -48,12 +50,12 @@ public class ProductController {
     }
 
     @PostMapping
-    public Integer addProduct(@RequestBody ProductDTO dto) {
+    public ResponseEntity addProduct(@RequestBody ProductDTO dto) {
         System.out.println(dto);
         Product newProduct = dto.toProduct(nextIdx());
         products.add(newProduct);
 
-        return newProduct.id();
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 
     @GetMapping("/{id}")
