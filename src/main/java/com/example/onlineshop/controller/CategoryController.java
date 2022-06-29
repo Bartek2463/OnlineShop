@@ -20,7 +20,7 @@ public class CategoryController {
 
     private List<Category> categories = new LinkedList<>() {
         {
-            add(new Category(nextIdx(), null, "AGD"));
+            add(new Category(nextIdx(), 1L, "AGD"));
             add(new Category(nextIdx(), 1L, "Komputery"));
             add(new Category(nextIdx(), 1l, "Smartfony"));
             add(new Category(nextIdx(), 1l, "TV i Audio"));
@@ -42,6 +42,7 @@ public class CategoryController {
         System.out.println(dto);
         Category newCategory = dto.toCategory(nextIdx());
         categories.add(newCategory);
+
         return newCategory.id();
     }
 
