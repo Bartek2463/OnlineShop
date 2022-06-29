@@ -1,17 +1,10 @@
 package com.example.onlineshop.controller;
 
 import com.example.onlineshop.OnlineShopApplicationTests;
-import com.example.onlineshop.dto.CategoryDTO;
-import com.example.onlineshop.model.Category;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.ResultHandler;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -34,7 +27,6 @@ class CategoryControllerTest extends OnlineShopApplicationTests {
                 .andExpect(jsonPath("$[0].id").exists())
                 .andExpect(jsonPath("$[0].parentId").exists())
                 .andExpect(jsonPath("$[0].name").exists());
-
     }
 
     @Test
@@ -50,18 +42,31 @@ class CategoryControllerTest extends OnlineShopApplicationTests {
                 .andExpect(jsonPath("$.id").value(id))
                 .andExpect(jsonPath("$.parentId").exists())
                 .andExpect(jsonPath("$.name").exists());
-
     }
 
     @Test
-    @DisplayName("check data for add categry ")
-    void sholudCreateCategory() throws Exception {
+    @DisplayName("Should create new category")
+    void shouldPostAddCategoryWithCreated() throws Exception {
         var url = "/category";
         mockMvc.perform(post(url)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("{\"id\":\"null\",\"parentId\":\"1\",\"name\":\"Inne\"}"))
+                        .content("""
+                                {"id" : "null","parentId" : "1","name" : "Inne"}
+                                """))
                 .andDo(print())
-                .andExpect(status().isOk());
+                .andExpect(status().isCreated());
+    }
 
+    @Test
+    @DisplayName("Should return http code 400 when json is bad")
+    void shouldPostAddCategoryThenHttpError400() throws Exception {
+        var url = "/category";
+        mockMvc.perform(post(url)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {"id" :"parentId" :"name" :}
+                                """))
+                .andDo(print())
+                .andExpect(status().is4xxClientError());
     }
 }
