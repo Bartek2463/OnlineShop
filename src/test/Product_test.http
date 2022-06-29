@@ -1,9 +1,9 @@
 
 ### lista wszystkich produktów
-GET http://localhost:8080/product/all
+GET http://localhost:8080/product
 
 ### dodawnie produktu do listy
-POST http://localhost:8080/product/add
+POST http://localhost:8080/product
 Accept: application/json
 Content-Type: application/json
 
@@ -16,10 +16,10 @@ Content-Type: application/json
 }
 
 ### pobieranie do edycji konkretnego id produktu
-GET http://localhost:8080/product/editId/3
+GET http://localhost:8080/product/1
 
 ### edycja konktrentego id produktu
-POST http://localhost:8080/product/editId/5
+PUT http://localhost:8080/product/15
 Accept: application/json
 Content-Type: application/json
 
@@ -30,13 +30,13 @@ Content-Type: application/json
   "category": 1.0
 }
 ###
-POST http://localhost:8080/product/deleteId/2
+DELETE http://localhost:8080/product/17
 Accept: application/json
 Content-Type: application/json
 
 
 ###  lista wszystkich produktów o danej kategorii
-GET http://localhost:8080/product/category/3
+GET http://localhost:8080/product/category/4
 
 
 

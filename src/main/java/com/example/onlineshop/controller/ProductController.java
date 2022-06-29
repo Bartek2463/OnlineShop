@@ -72,7 +72,7 @@ public class ProductController {
 
     @DeleteMapping("/{id}")
     public Integer deleteEditProduct(@PathVariable Integer id) {
-        products.remove(id - 1);
+        products.remove(id-1);
         return id;
     }
 
