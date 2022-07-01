@@ -1,6 +1,6 @@
 package com.example.onlineshop.model;
 
-public record Product(Integer id, String title, String description, Double price,Long categoryId) {
+public record Product(Long id, String title, String description, Double price,Long categoryId) {
 
     @Override
     public String toString(){
