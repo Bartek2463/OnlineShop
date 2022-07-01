@@ -5,13 +5,13 @@ import lombok.Value;
 
 @Value
 public class ProductDTO {
-    private Integer id;
+    private Long id;
     private String title;
     private String description;
     private Double price;
     private Long category;
 
-    public Product toProduct(int id) {
+    public Product toProduct(long id) {
         return new Product(id, title, description, price, category);
     }
 

@@ -8,12 +8,13 @@ import org.springframework.stereotype.Service;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
 @Service
 @Slf4j
 public class ProductService {
-    private AtomicInteger index = new AtomicInteger(0);
+    private AtomicLong index = new AtomicLong(0);
     private List<Product> products = new LinkedList<>() {
         {
             add(new Product(nextIdx(), "Lodówka", "To jest dobra Lodówka wspaniale chłodzi", 2500.0, 1L));
@@ -34,7 +35,7 @@ public class ProductService {
             add(new Product(nextIdx(), "Car Audio", "To jest Car Audio wysoka jakość Dźwieku", 605.0, 4l));
         }
     };
-    private Integer nextIdx() {
+    private Long nextIdx() {
         return index.incrementAndGet();
     }
 
@@ -42,24 +43,24 @@ public class ProductService {
         return products;
     }
 
-    public Integer addOneProduct(ProductDTO dto) {
+    public Long addOneProduct(ProductDTO dto) {
         System.out.println(dto);
         Product newProduct = dto.toProduct(nextIdx());
         products.add(newProduct);
         return newProduct.id();
     }
-    public Product getProductById(Integer id) {
+    public Product getProductById(Long id) {
         return getAllProducts().get(id.intValue() - 1);
     }
 
-    public Product editOneProduct(Integer id, ProductDTO dto) {
+    public Product editOneProduct(Long id, ProductDTO dto) {
         System.out.println(dto);
         Product product = dto.toProduct(id);
-        products.set(id - 1, product);
+        products.set(id.intValue() - 1, product);
         return product;
     }
 
-    public Integer deleteProduct(Integer id) {
+    public Long deleteProduct(Long id) {
         products.remove(id-1);
         return id;
     }
