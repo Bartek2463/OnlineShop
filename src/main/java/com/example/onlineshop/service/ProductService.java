@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
@@ -40,6 +39,10 @@ public class ProductService {
         }
     };
 
+    public ProductService(CategoryService service) {
+        this.categoryService = service;
+    }
+
     private Long nextIdx() {
         return index.incrementAndGet();
     }
@@ -47,22 +50,21 @@ public class ProductService {
     public List<Product> getAllProducts() {
         return products;
     }
-     public Boolean veryfyIfCategoryIdExists(List<Category> categories,Long id){
-        if(categories.contains(id)){
-            return true;
-        }else {
-            return false;
-        }
-     }
+
+    public Boolean verifyIfCategoryIdExists(List<Category> categories, Long id) {
+        return categories.stream()
+                .map(Category::getId)
+                .anyMatch(catId -> catId.equals(id));
+    }
 
     public Long addOneProduct(ProductDTO dto) {
-       if(veryfyIfCategoryIdExists(categoryService.categories,dto.getId())) {
-           Product newProduct = dto.toProduct(nextIdx());
-           products.add(newProduct);
-           return newProduct.id();
-       }else {
-           throw  new IllegalArgumentException("The category does not exist");
-       }
+        if (verifyIfCategoryIdExists(categoryService.getCategories(), dto.getCategory())) {
+            Product newProduct = dto.toProduct(nextIdx());
+            products.add(newProduct);
+            return newProduct.id();
+        } else {
+            throw new IllegalArgumentException("The category does not exist");
+        }
 
     }
 
@@ -71,15 +73,16 @@ public class ProductService {
     }
 
     public Product editOneProduct(Long id, ProductDTO dto) {
-        if(veryfyIfCategoryIdExists(categoryService.categories,dto.getId())) {
+        if (verifyIfCategoryIdExists(categoryService.getCategories(), dto.getId())) {
 
             Product product = dto.toProduct(id);
             products.set(id.intValue() - 1, product);
             return product;
-        }else {
-          throw new IllegalArgumentException("The category does not exist");
+        } else {
+            throw new IllegalArgumentException("The category does not exist");
         }
     }
+
     public Long deleteProduct(Long id) {
         products.remove(id - 1);
         return id;
@@ -93,4 +96,5 @@ public class ProductService {
                 .filter(v -> v.categoryId().equals(categoryId))
                 .collect(Collectors.toList());
     }
+
 }
