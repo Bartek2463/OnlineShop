@@ -33,14 +33,14 @@ class CategoryControllerTest extends OnlineShopApplicationTests {
     @DisplayName("Sholud return one entry ")
     void shouldReturnOneCategory() throws Exception {
         //given
-        var id = 1;
+        var id = 2;
         var url = "/category/" + id;
 
         mockMvc.perform(get(url))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id").value(id))
-                .andExpect(jsonPath("$.parentId").exists())
+                .andExpect(jsonPath("$.parent").exists())
                 .andExpect(jsonPath("$.name").exists());
     }
 

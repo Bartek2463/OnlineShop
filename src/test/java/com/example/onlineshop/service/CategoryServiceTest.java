@@ -2,6 +2,9 @@ package com.example.onlineshop.service;
 
 import com.example.onlineshop.OnlineShopApplicationTests;
 import com.example.onlineshop.model.Category;
+import com.example.onlineshop.model.Product;
+import com.example.onlineshop.service.CategoryService;
+import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.BeforeAll;
 
 import org.junit.jupiter.api.DisplayName;
@@ -12,23 +15,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 
-
+import static org.apache.logging.log4j.ThreadContext.isEmpty;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatNullPointerException;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 class CategoryServiceTest {
-
-
-
 
   private CategoryService categoryService = new CategoryService();
 
 
    @Test
-   @DisplayName("Sholud return list ")
-    public void check_All_Categories(){
+   @DisplayName("Sholud return list and is not null ")
+    public void shouldReturnListAndIsNotNull(){
 
-       assertThat(!categoryService.getCategories().isEmpty());
+    assertFalse(categoryService.getCategories().isEmpty());
+    assertFalse(categoryService.getCategories().contains(null));
 
    }
 

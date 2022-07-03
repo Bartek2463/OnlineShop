@@ -10,11 +10,11 @@ public class CategoryDTO {
     Long parentId;
     String name;
 
-    public Category toCategory(long id){
-        return  new Category(id,parentId,name);
+    public Category toCategory(long id,Category parent){
+        return  new Category(id,parent,name);
     }
 
     public static CategoryDTO from(Category p) {
-        return new CategoryDTO (p.id(), p.parentId(),p.name());
+        return new CategoryDTO (p.getId(), p.getParent().getId(),p.getName());
     }
 }
