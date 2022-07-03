@@ -1,25 +1,27 @@
 package com.example.onlineshop.model;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
-@Data
+@Getter
+@NoArgsConstructor
 public class BasketItem {
-
-    public BasketItem() {
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    long id;
+    private Long id;
     //
-    long productId;
+    private Long productId;
     @Column(name = "QUANTITY")
-    long quantity;
-    double price;
-    double value;
+    private Long quantity;
+    //
+    private Double price;
+    @Column(name = "VALUE")
+    private Double value;
 
     public BasketItem(long id, long productId, long quantity, double price) {
         this.id = id;
