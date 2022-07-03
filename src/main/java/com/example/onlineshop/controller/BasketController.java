@@ -2,13 +2,12 @@ package com.example.onlineshop.controller;
 
 import com.example.onlineshop.dto.BasketDTO;
 import com.example.onlineshop.model.Basket;
-import com.example.onlineshop.model.BasketItem;
 import com.example.onlineshop.service.BasketService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
 
 @RestController
 @RequestMapping("/basket")
@@ -31,7 +30,8 @@ public class BasketController {
     }
 
     @PostMapping
-    public long addBasket(@RequestBody BasketDTO dto) {
-        return basketService.addBasket(dto);
+    public ResponseEntity addBasket(@RequestBody BasketDTO dto) {
+        basketService.addBasket(dto);
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 }

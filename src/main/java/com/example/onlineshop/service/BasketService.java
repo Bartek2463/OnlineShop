@@ -29,8 +29,8 @@ public class BasketService {
     }};
 
     private List<Basket> basket = new LinkedList<Basket>() {{
-        add(new Basket(nextIdx(), basketItems1));
-        add(new Basket(nextIdx(), basketItems2));
+        add(new Basket(1, basketItems1));
+        add(new Basket(2, basketItems2));
     }};
 
     public List<Basket> getBasket() {
