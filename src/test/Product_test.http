@@ -12,7 +12,7 @@ Content-Type: application/json
   "title": "Pralka",
   "description": "To jest dobra Pralka wspaniale Pierze",
   "price": 2000.0,
-  "category": 1.0
+  "category": 20.0
 }
 
 ### pobieranie do edycji konkretnego id produktu
@@ -27,7 +27,7 @@ Content-Type: application/json
   "title": "Pralka",
   "description": "To jest dobra Pralka wspaniale Pierze",
   "price": 2000.0,
-  "category": 1.0
+  "category": 20
 }
 ###
 DELETE http://localhost:8080/product/17
@@ -36,7 +36,7 @@ Content-Type: application/json
 
 
 ###  lista wszystkich produktów o danej kategorii
-GET http://localhost:8080/product/category/4
+GET http://localhost:8080/product/category/100
 
 
 

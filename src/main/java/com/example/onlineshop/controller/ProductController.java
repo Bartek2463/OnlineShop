@@ -1,4 +1,5 @@
 package com.example.onlineshop.controller;
+import com.example.onlineshop.dto.CategoryDTO;
 import com.example.onlineshop.model.Product;
 import com.example.onlineshop.dto.ProductDTO;
 import com.example.onlineshop.service.ProductService;
@@ -28,7 +29,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public ResponseEntity addProduct(@RequestBody ProductDTO dto) {
+    public ResponseEntity addProduct(@RequestBody ProductDTO dto, CategoryDTO categoryDTO) {
         productService.addOneProduct(dto);
         return new ResponseEntity(HttpStatus.CREATED);
     }
