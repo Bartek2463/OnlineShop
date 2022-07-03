@@ -13,12 +13,14 @@ public class CategoryService {
 
     private AtomicLong index = new AtomicLong(0);
 
-     List<Category> categories = new LinkedList<>() {
+    private  Category root = new Category(nextIdx(),null,"Inne");
+     private List<Category> categories = new LinkedList<>() {
         {
-//            add(new Category(nextIdx(), 1L, "AGD"));
-//            add(new Category(nextIdx(), 1L, "Komputery"));
-//            add(new Category(nextIdx(), 1l, "Smartfony"));
-//            add(new Category(nextIdx(), 1l, "TV i Audio"));
+            add(root);
+            add(new Category(nextIdx(), root, "AGD"));
+            add(new Category(nextIdx(), root, "Komputery"));
+            add(new Category(nextIdx(), root, "Smartfony"));
+            add(new Category(nextIdx(), root, "TV i Audio"));
         }
     };
 
@@ -36,9 +38,9 @@ public class CategoryService {
 
     public Long addCategory(CategoryDTO dto) {
         System.out.println(dto);
-        Category newCategory = dto.toCategory(nextIdx());
+        Category newCategory = dto.toCategory(nextIdx(),getCategoryById(dto.getParentId()));
         categories.add(newCategory);
-        return newCategory.id();
+        return newCategory.getId();
     }
 
 

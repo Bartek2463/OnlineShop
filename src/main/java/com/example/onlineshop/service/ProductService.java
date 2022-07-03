@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 public class ProductService {
-    private CategoryService categoryService;
+    private final CategoryService categoryService;
 
     private AtomicLong index = new AtomicLong(0);
     private List<Product> products = new LinkedList<>() {

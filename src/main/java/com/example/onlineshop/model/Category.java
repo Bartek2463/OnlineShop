@@ -1,10 +1,25 @@
 package com.example.onlineshop.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 import java.util.List;
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+public class Category {
 
-public record Category(Long id, Long parentId, String name) {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @ManyToOne
+    @JoinColumn(name="parentId")
+    private Category parent;
+    private String name;
 
-    public String category() {
-        return "id  " + id + "parentid" + parentId + "Name" + name ;
-    }
+
+
 }
