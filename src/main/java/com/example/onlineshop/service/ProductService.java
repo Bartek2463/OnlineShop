@@ -51,7 +51,7 @@ public class ProductService {
         return products;
     }
 
-    public Boolean verifyIfCategoryIdExists(List<Category> categories, Long id) {
+    public boolean verifyIfCategoryIdExists(List<Category> categories, Long id) {
         return categories.stream()
                 .map(Category::getId)
                 .anyMatch(catId -> catId.equals(id));
@@ -69,14 +69,23 @@ public class ProductService {
     }
 
     public Product getProductById(Long id) {
-        return getAllProducts().get(id.intValue() - 1);
+        return getAllProducts().stream()
+                .filter(product -> product.id().equals(id))
+                .findFirst()
+                .orElseThrow();
     }
 
     public Product editOneProduct(Long id, ProductDTO dto) {
-        if (verifyIfCategoryIdExists(categoryService.getCategories(), dto.getId())) {
+        if (verifyIfCategoryIdExists(categoryService.getCategories(), dto.getCategory())) {
 
             Product product = dto.toProduct(id);
-            products.set(id.intValue() - 1, product);
+            var edited = products.stream()
+                    .filter(p -> p.id().equals(dto.getId()))
+                    .findAny()
+                    .orElseThrow();
+            products.remove(edited);
+            products.add(product);
+
             return product;
         } else {
             throw new IllegalArgumentException("The category does not exist");
@@ -84,7 +93,9 @@ public class ProductService {
     }
 
     public Long deleteProduct(Long id) {
-        products.remove(id - 1);
+        products = products.stream()
+                .filter(product -> !product.id().equals(id))
+                .collect(Collectors.toList());
         return id;
     }
 

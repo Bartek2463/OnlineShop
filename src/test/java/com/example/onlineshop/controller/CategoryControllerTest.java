@@ -25,7 +25,7 @@ class CategoryControllerTest extends OnlineShopApplicationTests {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[*].id").isNotEmpty())
                 .andExpect(jsonPath("$[0].id").exists())
-                .andExpect(jsonPath("$[0].parentId").exists())
+                .andExpect(jsonPath("$[1].parent").exists())
                 .andExpect(jsonPath("$[0].name").exists());
     }
 
@@ -51,7 +51,7 @@ class CategoryControllerTest extends OnlineShopApplicationTests {
         mockMvc.perform(post(url)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
-                                {"id" : "null","parentId" : "1","name" : "Inne"}
+                                {"id" : 0,"parent" : "1","name" : "Inne"}
                                 """))
                 .andDo(print())
                 .andExpect(status().isCreated());
@@ -64,7 +64,7 @@ class CategoryControllerTest extends OnlineShopApplicationTests {
         mockMvc.perform(post(url)
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("""
-                                {"id" :"parentId" :"name" :}
+                                {"id" :"parent" :"name" :}
                                 """))
                 .andDo(print())
                 .andExpect(status().is4xxClientError());

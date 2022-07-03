@@ -84,7 +84,7 @@ class ProductControllerTest extends OnlineShopApplicationTests {
 
     @Test
     @DisplayName("Should edit one particular entry")
-    void shoulEditOneProduct() throws Exception {
+    void shouldEditOneProduct() throws Exception {
         var id = 1;
         var url = "/product/" + id;
         mockMvc.perform(put(url)
@@ -98,7 +98,7 @@ class ProductControllerTest extends OnlineShopApplicationTests {
 
     @Test
     @DisplayName("Should delete one particular  entry")
-    void shoulDeleteOneProduct() throws Exception {
+    void shouldDeleteOneProduct() throws Exception {
         var id = 1;
         var url = "/product/" + id;
         mockMvc.perform(delete(url)

@@ -37,7 +37,7 @@ public class CategoryService {
     }
 
     public Long addCategory(CategoryDTO dto) {
-        System.out.println(dto);
+//        System.out.println(dto);
         Category newCategory = dto.toCategory(nextIdx(),getCategoryById(dto.getParentId()));
         categories.add(newCategory);
         return newCategory.getId();
