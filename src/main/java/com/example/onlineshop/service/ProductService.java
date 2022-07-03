@@ -1,6 +1,8 @@
 package com.example.onlineshop.service;
 
+import com.example.onlineshop.dto.CategoryDTO;
 import com.example.onlineshop.dto.ProductDTO;
+import com.example.onlineshop.model.Category;
 import com.example.onlineshop.model.Product;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,8 @@ import java.util.stream.Collectors;
 @Service
 @Slf4j
 public class ProductService {
+    private CategoryService categoryService;
+
     private AtomicLong index = new AtomicLong(0);
     private List<Product> products = new LinkedList<>() {
         {
@@ -35,6 +39,7 @@ public class ProductService {
             add(new Product(nextIdx(), "Car Audio", "To jest Car Audio wysoka jakość Dźwieku", 605.0, 4l));
         }
     };
+
     private Long nextIdx() {
         return index.incrementAndGet();
     }
@@ -42,26 +47,41 @@ public class ProductService {
     public List<Product> getAllProducts() {
         return products;
     }
+     public Boolean veryfyIfCategoryIdExists(List<Category> categories,Long id){
+        if(categories.contains(id)){
+            return true;
+        }else {
+            return false;
+        }
+     }
 
     public Long addOneProduct(ProductDTO dto) {
-        System.out.println(dto);
-        Product newProduct = dto.toProduct(nextIdx());
-        products.add(newProduct);
-        return newProduct.id();
+       if(veryfyIfCategoryIdExists(categoryService.categories,dto.getId())) {
+           Product newProduct = dto.toProduct(nextIdx());
+           products.add(newProduct);
+           return newProduct.id();
+       }else {
+           throw  new IllegalArgumentException("The category does not exist");
+       }
+
     }
+
     public Product getProductById(Long id) {
         return getAllProducts().get(id.intValue() - 1);
     }
 
     public Product editOneProduct(Long id, ProductDTO dto) {
-        System.out.println(dto);
-        Product product = dto.toProduct(id);
-        products.set(id.intValue() - 1, product);
-        return product;
-    }
+        if(veryfyIfCategoryIdExists(categoryService.categories,dto.getId())) {
 
+            Product product = dto.toProduct(id);
+            products.set(id.intValue() - 1, product);
+            return product;
+        }else {
+          throw new IllegalArgumentException("The category does not exist");
+        }
+    }
     public Long deleteProduct(Long id) {
-        products.remove(id-1);
+        products.remove(id - 1);
         return id;
     }
 
