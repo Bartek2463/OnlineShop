@@ -39,7 +39,7 @@ public class BasketItemService {
         return index.incrementAndGet();
     }
 
-    private double calculateValue(long quantity, double price) {
+    double calculateValue(long quantity, double price) {
         return quantity * price;
     }
 }
