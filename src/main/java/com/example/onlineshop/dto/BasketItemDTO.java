@@ -9,14 +9,14 @@ public class BasketItemDTO {
     private long productId;
     private long quantity;
     private double price;
-    private double value;
+
 
     public BasketItem toBasketItem(long id) {
-        return new BasketItem(id, productId, quantity, price, value);
+        return new BasketItem(id, productId, quantity, price);
     }
 
     public static BasketItemDTO from(BasketItem p) {
-        return new BasketItemDTO(p.id(), p.productId(), p.quantity(), p.price(), p.value());
+        return new BasketItemDTO(p.getId(), p.getProductId(), p.getQuantity(), p.getPrice());
     }
 
 }
