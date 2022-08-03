@@ -19,6 +19,7 @@ public class BasketService {
         add(new BasketItem(nextIdx(), 6L, 4, 20));
         add(new BasketItem(nextIdx(), 8L, 3, 10));
         add(new BasketItem(nextIdx(), 4L, 2, 30));
+
     }};
 
 
