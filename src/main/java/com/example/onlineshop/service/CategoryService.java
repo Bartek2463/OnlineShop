@@ -11,37 +11,7 @@ import java.util.concurrent.atomic.AtomicLong;
 @Service
 public class CategoryService {
 
-    private AtomicLong index = new AtomicLong(0);
 
-    private  Category root = new Category(nextIdx(),null,"Inne");
-     private List<Category> categories = new LinkedList<>() {
-        {
-            add(root);
-            add(new Category(nextIdx(), root, "AGD"));
-            add(new Category(nextIdx(), root, "Komputery"));
-            add(new Category(nextIdx(), root, "Smartfony"));
-            add(new Category(nextIdx(), root, "TV i Audio"));
-        }
-    };
-
-    private long nextIdx() {
-        return index.incrementAndGet();
-    }
-
-    public List<Category> getCategories() {
-        return categories;
-    }
-
-    public Category getCategoryById(Long id) {
-        return categories.get(id.intValue() - 1);
-    }
-
-    public Long addCategory(CategoryDTO dto) {
-//        System.out.println(dto);
-        Category newCategory = dto.toCategory(nextIdx(),getCategoryById(dto.getParentId()));
-        categories.add(newCategory);
-        return newCategory.getId();
-    }
 
 
 }
