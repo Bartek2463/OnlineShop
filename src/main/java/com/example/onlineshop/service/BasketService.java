@@ -16,16 +16,13 @@ public class BasketService {
     private AtomicLong index = new AtomicLong(0);
 
     private final List<BasketItem> basketItems1 = new LinkedList<>() {{
-        add(new BasketItem(nextIdx(), 6L, 4, 20));
-        add(new BasketItem(nextIdx(), 8L, 3, 10));
-        add(new BasketItem(nextIdx(), 4L, 2, 30));
+
+
     }};
 
 
     private final List<BasketItem> basketItems2 = new LinkedList<>() {{
-        add(new BasketItem(nextIdx(), 12L, 1, 5));
-        add(new BasketItem(nextIdx(), 13L, 5, 2));
-        add(new BasketItem(nextIdx(), 14L, 6, 7));
+
     }};
 
     private List<Basket> basket = new LinkedList<Basket>() {{

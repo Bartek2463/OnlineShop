@@ -5,14 +5,14 @@ import lombok.Value;
 
 @Value
 public class BasketItemDTO {
-    private long id;
-    private long productId;
-    private long quantity;
-    private double price;
+    private Long id;
+    private Long productId;
+    private Double quantity;
+    private Double price;
 
 
-    public BasketItem toBasketItem(long id) {
-        return new BasketItem(id, productId, quantity, price);
+    public BasketItem toBasketItem(Long id) {
+        return new BasketItem(id, productId, quantity, price,null);
     }
 
     public static BasketItemDTO from(BasketItem p) {

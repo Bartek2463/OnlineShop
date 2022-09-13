@@ -101,6 +101,7 @@ public class ProductService {
 
 
     public List<Product> getListProductByCategoryId(Long categoryId) {
+
         log.debug("categoryid: {}", categoryId);
         System.out.println("category " + categoryId);
         return products.stream()

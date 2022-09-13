@@ -53,7 +53,7 @@ class BasketItemServiceTest {
         //given
         BasketItemService basketItemService = new BasketItemService();
         // when
-        var id = basketItemService.addItem(new BasketItemDTO(1L,4L,2,10));
+        var id = basketItemService.addItem(new BasketItemDTO(1L,4L,2.0,10.0));
         // then
         assertTrue(id > 0, "Id should be positive number");
     }
