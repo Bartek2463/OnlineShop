@@ -24,17 +24,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class CategoryServiceTest {
 
-  private CategoryService categoryService = new CategoryService();
 
 
-   @Test
-   @DisplayName("Sholud return list and is not null ")
-    public void shouldReturnListAndIsNotNull(){
-
-    assertFalse(categoryService.getCategories().isEmpty());
-    assertFalse(categoryService.getCategories().contains(null));
-
-   }
 
 
     }
