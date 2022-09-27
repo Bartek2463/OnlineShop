@@ -8,11 +8,11 @@ import java.util.List;
 
 @Value
 public class BasketDTO {
-    private long id;
-    private List<BasketItem> ListOfBaskets;
-
-
-    public Basket toBasket(long id) {
-        return new Basket(id, ListOfBaskets);
-    }
+//    private long id;
+//    private List<BasketItem> ListOfBaskets;
+//
+//
+//    public Basket toBasket(long id) {
+//        return new Basket(id, ListOfBaskets);
+//    }
 }

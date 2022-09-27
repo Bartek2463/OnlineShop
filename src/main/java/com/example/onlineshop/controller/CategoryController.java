@@ -21,21 +21,21 @@ public class CategoryController {
 
 
 
-    @GetMapping
-    public List<Category> getCategories() {
-        return categoryService.getCategories();
-    }
-
-    @GetMapping("/{id}")
-    public Long getCategory(@PathVariable Long id) {
-        return categoryService.getCategoryById(id);
-    }
-
-    @PostMapping
-    public ResponseEntity addCategory(@RequestBody Category category) {
-        categoryService.addCategory(category);
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
+//    @GetMapping
+//    public List<Category> getCategories() {
+//        return categoryService.getCategories();
+//    }
+//
+//    @GetMapping("/{id}")
+//    public Long getCategory(@PathVariable Long id) {
+//        return categoryService.getCategoryById(id);
+//    }
+//
+//    @PostMapping
+//    public ResponseEntity addCategory(@RequestBody Category category) {
+//        categoryService.addCategory(category);
+//        return new ResponseEntity<>(HttpStatus.CREATED);
+//    }
 
 
 }

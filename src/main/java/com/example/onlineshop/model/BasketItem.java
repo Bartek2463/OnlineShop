@@ -7,34 +7,31 @@ import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
-@Getter
-@NoArgsConstructor
 
 public class BasketItem {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    //
-    private Long productId;
-    @Column(name = "QUANTITY")
-    private Double quantity;
-    //
-    private Double price;
-    @Column(name = "VALUE")
-    private Double value;
-
-    public BasketItem(Long id, Long productId, Double quantity, Double price, Double value) {
-        this.id = id;
-        this.productId = productId;
-        this.quantity = quantity;
-        this.price = price;
-        this.value = value;
-    }
-
-    private double calculateValue(long quantity, double price) {
-        return quantity * price;
-    }
+//
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private Long id;
+//    //
+//    private Long productId;
+//    @Column(name = "QUANTITY")
+//    private Double quantity;
+//    //
+//    private Double price;
+//    @Column(name = "VALUE")
+//    private Double value;
+//
+//    public BasketItem(Long id, Long productId, Double quantity, Double price, Double value) {
+//        this.id = id;
+//        this.productId = productId;
+//        this.quantity = quantity;
+//        this.price = price;
+//        this.value = value;
+//    }
+//
+//    private double calculateValue(long quantity, double price) {
+//        return quantity * price;
+//    }
 
 }

@@ -12,26 +12,26 @@ import java.util.List;
 @RestController
 @RequestMapping("/basket")
 public class BasketController {
-
-    private BasketService basketService;
-
-    public BasketController(BasketService basketService) {
-        this.basketService = basketService;
-    }
-
-    @GetMapping
-    public List<Basket> getBaskets() {
-        return basketService.getBasket();
-    }
-
-    @GetMapping("/{id}")
-    public Basket getBasket(@PathVariable Long id) {
-        return basketService.getBasketBy(id);
-    }
-
-    @PostMapping
-    public ResponseEntity addBasket(@RequestBody BasketDTO dto) {
-        basketService.addBasket(dto);
-        return new ResponseEntity(HttpStatus.CREATED);
-    }
+//
+//    private BasketService basketService;
+//
+//    public BasketController(BasketService basketService) {
+//        this.basketService = basketService;
+//    }
+//
+//    @GetMapping
+//    public List<Basket> getBaskets() {
+//        return basketService.getBasket();
+//    }
+//
+//    @GetMapping("/{id}")
+//    public Basket getBasket(@PathVariable Long id) {
+//        return basketService.getBasketBy(id);
+//    }
+//
+//    @PostMapping
+//    public ResponseEntity addBasket(@RequestBody BasketDTO dto) {
+//        basketService.addBasket(dto);
+//        return new ResponseEntity(HttpStatus.CREATED);
+//    }
 }
