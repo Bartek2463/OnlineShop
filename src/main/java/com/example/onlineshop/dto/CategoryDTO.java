@@ -1,8 +1,9 @@
 package com.example.onlineshop.dto;
 
 import com.example.onlineshop.model.Category;
-import com.example.onlineshop.model.Product;
 import lombok.Value;
+
+import java.util.Optional;
 
 @Value
 public class CategoryDTO {
@@ -10,7 +11,7 @@ public class CategoryDTO {
     Long parentId;
     String name;
 
-    public Category toCategory(long id,Category parent){
+    public Category toCategory(Long id, Category parent){
         return  new Category(id,parent,name);
     }
 

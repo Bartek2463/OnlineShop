@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.*;
 
 
 import java.util.List;
+import java.util.Optional;
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("/category")
@@ -19,23 +21,21 @@ public class CategoryController {
 
     private CategoryService categoryService;
 
+    @GetMapping
+    public Iterable<Category> getCategories() {
+        return categoryService.findAll();
+    }
 
+    @GetMapping("/{id}")
+    public Optional<Category> getCategory(@PathVariable Long id) {
+        return categoryService.findById(id);
+    }
 
-//    @GetMapping
-//    public List<Category> getCategories() {
-//        return categoryService.getCategories();
-//    }
-//
-//    @GetMapping("/{id}")
-//    public Long getCategory(@PathVariable Long id) {
-//        return categoryService.getCategoryById(id);
-//    }
-//
-//    @PostMapping
-//    public ResponseEntity addCategory(@RequestBody Category category) {
-//        categoryService.addCategory(category);
-//        return new ResponseEntity<>(HttpStatus.CREATED);
-//    }
+    @PostMapping
+    public ResponseEntity addCategory(@RequestBody CategoryDTO dto) {
+        categoryService.save(dto);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 
 
 }
