@@ -29,6 +29,12 @@ public class CategoryService {
         Category newCategory = dto.toCategory(dto.getId(),findById(dto.getParentId()).orElse(null));
         return videoAssettsRepository.save(newCategory);
     }
+    public void deleteCategory(Long id){
+        videoAssettsRepository.deleteById(id);
+    }
+    public Category edit(Category category){
+       return videoAssettsRepository.save(category);
+    }
 
 }
 
