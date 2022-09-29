@@ -1,19 +1,7 @@
 package com.example.onlineshop.controller;
 
-import com.example.onlineshop.model.OrderItem;
-import com.example.onlineshop.dto.OrderItemDTO;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/order")

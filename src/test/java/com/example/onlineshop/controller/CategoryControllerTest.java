@@ -44,29 +44,29 @@ class CategoryControllerTest extends OnlineShopApplicationTests {
                 .andExpect(jsonPath("$.name").exists());
     }
 
-    @Test
-    @DisplayName("Should create new category")
-    void shouldPostAddCategoryWithCreated() throws Exception {
-        var url = "/category";
-        mockMvc.perform(post(url)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("""
-                                {"id" : 0,"parent" : "1","name" : "Inne"}
-                                """))
-                .andDo(print())
-                .andExpect(status().isCreated());
-    }
+//    @Test
+//    @DisplayName("Should create new category")
+//    void shouldPostAddCategoryWithCreated() throws Exception {
+//        var url = "/category";
+//        mockMvc.perform(post(url)
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content("""
+//                                {"id" : 0,"parent" : "1","name" : "Inne"}
+//                                """))
+//                .andDo(print())
+//                .andExpect(status().isCreated());
+//    }
 
-    @Test
-    @DisplayName("Should return http code 400 when json is bad")
-    void shouldPostAddCategoryThenHttpError400() throws Exception {
-        var url = "/category";
-        mockMvc.perform(post(url)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("""
-                                {"id" :"parent" :"name" :}
-                                """))
-                .andDo(print())
-                .andExpect(status().is4xxClientError());
-    }
+//    @Test
+//    @DisplayName("Should return http code 400 when json is bad")
+//    void shouldPostAddCategoryThenHttpError400() throws Exception {
+//        var url = "/category";
+//        mockMvc.perform(post(url)
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content("""
+//                                {"id" :"parent" :"name" :}
+//                                """))
+//                .andDo(print())
+//                .andExpect(status().is4xxClientError());
+//    }
 }

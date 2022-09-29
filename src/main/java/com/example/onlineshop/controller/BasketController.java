@@ -1,13 +1,7 @@
 package com.example.onlineshop.controller;
 
-import com.example.onlineshop.dto.BasketDTO;
-import com.example.onlineshop.model.Basket;
-import com.example.onlineshop.service.BasketService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/basket")

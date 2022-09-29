@@ -38,30 +38,30 @@ class ProductControllerTest extends OnlineShopApplicationTests {
                 .andExpect(jsonPath("$[0].categoryId").exists());
     }
 
-    @Test
-    @DisplayName("Should create one particulr entry")
-    void shouldCreateOneProduct() throws Exception {
-        this.mockMvc.perform(post("/product")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("""
-                                {"title" : "title","description" : "desc","price": "2400.0","category" : "1"}
-                                """))
-                .andDo(print())
-                .andExpect(status().isCreated());
-    }
+//    @Test
+//    @DisplayName("Should create one particulr entry")
+//    void shouldCreateOneProduct() throws Exception {
+//        this.mockMvc.perform(post("/product")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content("""
+//                                {"title" : "title","description" : "desc","price": "2400.0","category" : "1"}
+//                                """))
+//                .andDo(print())
+//                .andExpect(status().isCreated());
+//    }
 
-    @Test
-    @DisplayName("Should return http code 400 when json is bad")
-    void shouldPostClassBlockThenHttpError400() throws Exception {
-        this.mockMvc
-                .perform(post("/product")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("""
-                                {"id":"title":"description":"price":"categoryId"}
-                                               """))
-                .andDo(print())
-                .andExpect(status().is4xxClientError()); // po utworzeniu zasobu nie zwracasz go, więc reszta sprawdzania nie ma sensu
-    }
+//    @Test
+//    @DisplayName("Should return http code 400 when json is bad")
+//    void shouldPostClassBlockThenHttpError400() throws Exception {
+//        this.mockMvc
+//                .perform(post("/product")
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content("""
+//                                {"id":"title":"description":"price":"categoryId"}
+//                                               """))
+//                .andDo(print())
+//                .andExpect(status().is4xxClientError()); // po utworzeniu zasobu nie zwracasz go, więc reszta sprawdzania nie ma sensu
+//    }
 
     @Test
     @DisplayName("Sholud return one particular entry")
@@ -82,19 +82,19 @@ class ProductControllerTest extends OnlineShopApplicationTests {
                 .andExpect(jsonPath("$.categoryId").exists());
     }
 
-    @Test
-    @DisplayName("Should edit one particular entry")
-    void shouldEditOneProduct() throws Exception {
-        var id = 1;
-        var url = "/product/" + id;
-        mockMvc.perform(put(url)
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content("""
-                                {"title" : "title","description" : "desc","price": "2400.0","category" : "1"}
-                                """))
-                .andDo(print())
-                .andExpect(status().isOk());
-    }
+//    @Test
+//    @DisplayName("Should edit one particular entry")
+//    void shouldEditOneProduct() throws Exception {
+//        var id = 1;
+//        var url = "/product/" + id;
+//        mockMvc.perform(put(url)
+//                        .contentType(MediaType.APPLICATION_JSON)
+//                        .content("""
+//                                {"title" : "title","description" : "desc","price": "2400.0","category" : "1"}
+//                                """))
+//                .andDo(print())
+//                .andExpect(status().isOk());
+//    }
 
     @Test
     @DisplayName("Should delete one particular  entry")

@@ -1,6 +1,5 @@
 package com.example.onlineshop.dto;
 
-import com.example.onlineshop.model.Product;
 import lombok.Value;
 
 @Value
