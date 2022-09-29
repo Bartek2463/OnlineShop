@@ -22,12 +22,12 @@ public class CategoryController {
     private CategoryService categoryService;
 
     @GetMapping
-    public Iterable<Category> getCategories() {
+    public List<Category> getCategories() {
         return categoryService.findAll();
     }
 
     @GetMapping("/{id}")
-    public Optional<Category> getCategory(@PathVariable Long id) {
+    public Category getCategory(@PathVariable Long id) {
         return categoryService.findById(id);
     }
 

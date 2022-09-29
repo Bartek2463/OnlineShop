@@ -1,16 +1,7 @@
 package com.example.onlineshop.service;
 
-import com.example.onlineshop.dto.CategoryDTO;
-import com.example.onlineshop.dto.ProductDTO;
-import com.example.onlineshop.model.Category;
-import com.example.onlineshop.model.Product;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import java.util.LinkedList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.stream.Collectors;
 
 @Service
 @Slf4j

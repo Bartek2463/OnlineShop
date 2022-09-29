@@ -1,10 +1,6 @@
 package com.example.onlineshop.dto;
 
-import com.example.onlineshop.model.Basket;
-import com.example.onlineshop.model.BasketItem;
 import lombok.Value;
-
-import java.util.List;
 
 @Value
 public class BasketDTO {

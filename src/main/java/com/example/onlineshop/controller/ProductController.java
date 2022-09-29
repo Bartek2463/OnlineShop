@@ -1,14 +1,9 @@
 package com.example.onlineshop.controller;
-import com.example.onlineshop.dto.CategoryDTO;
-import com.example.onlineshop.model.Product;
-import com.example.onlineshop.dto.ProductDTO;
-import com.example.onlineshop.service.ProductService;
+
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @Controller

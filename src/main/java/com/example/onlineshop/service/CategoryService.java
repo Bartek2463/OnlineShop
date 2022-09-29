@@ -18,15 +18,15 @@ import java.util.concurrent.atomic.AtomicLong;
 public class CategoryService {
     private CategoryRepository videoAssettsRepository;
 
-    public Optional<Category> findById(Long id){
-        return videoAssettsRepository.findById(id);
+    public Category findById(Long id){
+       return videoAssettsRepository.findById(id).orElse(null);
 
     }
-    public Iterable<Category> findAll(){
+    public List<Category> findAll(){
         return videoAssettsRepository.findAll();
     }
     public  Category save (CategoryDTO dto){
-        Category newCategory = dto.toCategory(dto.getId(),findById(dto.getParentId()).orElse(null));
+        Category newCategory = dto.toCategory(dto.getId(),findById(dto.getParentId()));
         return videoAssettsRepository.save(newCategory);
     }
     public void deleteCategory(Long id){
