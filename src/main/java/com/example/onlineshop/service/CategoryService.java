@@ -19,7 +19,7 @@ public class CategoryService {
     private CategoryRepository videoAssettsRepository;
 
     public Category findById(Long id){
-       return videoAssettsRepository.findById(id).orElse(null);
+       return videoAssettsRepository.findById(id).orElseThrow();
 
     }
     public List<Category> findAll(){
