@@ -82,19 +82,19 @@ class ProductControllerTest extends OnlineShopApplicationTests {
                 .andExpect(jsonPath("$.categoryId").exists());
     }
 
-//    @Test
-//    @DisplayName("Should edit one particular entry")
-//    void shouldEditOneProduct() throws Exception {
-//        var id = 1;
-//        var url = "/product/" + id;
-//        mockMvc.perform(put(url)
-//                        .contentType(MediaType.APPLICATION_JSON)
-//                        .content("""
-//                                {"title" : "title","description" : "desc","price": "2400.0","category" : "1"}
-//                                """))
-//                .andDo(print())
-//                .andExpect(status().isOk());
-//    }
+    @Test
+    @DisplayName("Should edit one particular entry")
+    void shouldEditOneProduct() throws Exception {
+        var id = 1;
+        var url = "/product/" + id;
+        mockMvc.perform(put(url)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {"title" : "title","description" : "desc","price": "2400.0","category" : "1"}
+                                """))
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
 
     @Test
     @DisplayName("Should delete one particular  entry")
