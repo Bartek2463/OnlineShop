@@ -1,19 +1,16 @@
 package com.example.onlineshop.model;
 
-import com.fasterxml.jackson.databind.ser.std.StdKeySerializers;
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.ValueGenerationType;
+import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@Setter
 public class Category {
 
     @Id

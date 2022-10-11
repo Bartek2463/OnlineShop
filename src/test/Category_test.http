@@ -5,7 +5,7 @@ GET http://localhost:8080/category
 
 // Id konkretnej kategorii
 ###
-GET http://localhost:8080/category/2
+GET http://localhost:8080/category/4
 
 
 //dodawanie kategorii
@@ -17,6 +17,6 @@ Content-Type: application/json
 {
   "id": null,
   "parentId": 1.0,
-  "name": "Ucheyt"
+  "name": "RTV"
 }
 
